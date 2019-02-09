@@ -413,8 +413,11 @@ begin
 if fulltext<>memo1.Text then
 begin
 l:=MessageDlg('Save "Config.json" file ?',mtConfirmation,mbYesNoCancel,0);
- if l=MrYes then Memo1.Lines.SaveToFile('Config.json');
-
+ if l=MrYes then
+  begin
+  Memo1.Lines.SaveToFile('Config.json');
+  fulltext:=memo1.Text;
+  end;
  end;
  if  n2.Checked =true then
   if WinExec('hc_bot.exe', SW_HIDE) < 32 then
@@ -489,8 +492,8 @@ if fulltext<>memo1.Text then
 begin
 l:=MessageDlg('Save "Config.json" file ?',mtConfirmation,mbYesNoCancel,0);
  if l=MrYes then Memo1.Lines.SaveToFile('Config.json');
+end;
 
- end;
  if  n2.Checked =true then
   if WinExec('hc_bot.exe', SW_HIDE) < 32 then
         begin
@@ -503,6 +506,7 @@ l:=MessageDlg('Save "Config.json" file ?',mtConfirmation,mbYesNoCancel,0);
                 ShowMessage('А где файл  hc_bot.exe?!')
        end else Button2.Caption:='Остановить?';
 
+  fulltext:=memo1.Text;
   n10.Enabled:=false;
   n4.Enabled:=true;
 end else
